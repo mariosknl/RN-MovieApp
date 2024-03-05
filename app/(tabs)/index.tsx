@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchTopRatedMovies } from "@/api/movies";
 
 import { useQuery } from "@tanstack/react-query";
+import MovieListItem from "@/components/MovieListItem";
 
 export default function TabOneScreen() {
 	const { data, isLoading, error } = useQuery({
@@ -24,11 +25,10 @@ export default function TabOneScreen() {
 		<View style={styles.container}>
 			<FlatList
 				data={data}
-				renderItem={({ item }) => (
-					<View>
-						<Text>{item.title}</Text>
-					</View>
-				)}
+				numColumns={2}
+				contentContainerStyle={{ gap: 5, padding: 5 }}
+				columnWrapperStyle={{ gap: 5 }}
+				renderItem={({ item }) => <MovieListItem movie={item} />}
 			/>
 		</View>
 	);
@@ -37,7 +37,5 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
 	},
 });
