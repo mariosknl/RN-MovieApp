@@ -1,7 +1,7 @@
 import { fetchMovie } from "@/api/movies";
 import { useQuery } from "@tanstack/react-query";
-import { useLocalSearchParams } from "expo-router";
-import { ActivityIndicator, Text, View } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
+import { ActivityIndicator, Image, Text, View } from "react-native";
 
 const MovieDetails = () => {
 	const { id } = useLocalSearchParams();
@@ -25,7 +25,19 @@ const MovieDetails = () => {
 
 	return (
 		<View>
-			<Text style={{ fontSize: 24, fontWeight: "500" }}>{movie?.title}</Text>
+			<Stack.Screen options={{ title: movie?.title }} />
+			<Image
+				source={{
+					uri: "https://image.tmdb.org/t/p/w500" + movie.backdrop_path,
+				}}
+				style={{ width: "100%", height: 300 }}
+			/>
+			<View style={{ padding: 10 }}>
+				<Text style={{ fontSize: 30, fontWeight: "500", marginVertical: 10 }}>
+					{movie?.title}
+				</Text>
+				<Text style={{ fontSize: 16 }}>{movie?.overview}</Text>
+			</View>
 		</View>
 	);
 };
