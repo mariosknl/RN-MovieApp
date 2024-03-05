@@ -1,11 +1,10 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text } from "react-native";
 
-import { View } from "@/components/Themed";
-import { useEffect, useState } from "react";
 import { fetchTopRatedMovies } from "@/api/movies";
+import { View } from "@/components/Themed";
 
-import { useQuery } from "@tanstack/react-query";
 import MovieListItem from "@/components/MovieListItem";
+import { useQuery } from "@tanstack/react-query";
 
 export default function TabOneScreen() {
 	const { data, isLoading, error } = useQuery({
